@@ -62,11 +62,30 @@ function cartNumbers(product){
 }
 
 function setItems(product){
+    let cartItems = localStorage.getItem('productsInCart');
+    cartItems = JSON.parse(cartItems);
+     //console.log('my product is ',cartItems);
 
-    console.log('my product is ',product);
-    let cartItems = {
-        [product.name]:product
-    }
+     if (cartItems !=null){
+
+        if(cartItems[product.name] === undefined){
+            cartItems = {
+                ...cartItems,
+                [product.name]:product
+
+            }
+        }
+         cartItems[product.name].inCart += 1;
+     }else{
+         product.inCart = 1;
+         cartItems = {
+             [product.name]: product
+         }
+     }
+
+    //  cartItems = {
+    //     [product.name]:product
+    //}
     product.inCart = 1;
     localStorage.setItem('productsInCart',JSON.stringify(cartItems))
 
