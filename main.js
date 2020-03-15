@@ -6,18 +6,18 @@ let products = [
     {
         name: 'Small pizza',
         description: '10"pizza for one person',
-        price: '$269.99',
+        price: '269.99',
         inCart: 0
     },
     {
         name: 'Medium pizza',
         description: '12"pizza for two people',
-        price: '$322.99',
+        price: '322.99',
         inCart: 0
     },   {
         name: 'Large pizza',
         description: '15"pizza for four people',
-        price: '$394.99',
+        price: '394.99',
         inCart: 0
     }
 ];
@@ -28,6 +28,7 @@ for(let i=0; i<carts.length; i++){
     
     carts[i].addEventListener('click',()=>{
         cartNumbers(products[i]);
+        totalCost(products[i]);
     });
 
 };
@@ -90,6 +91,29 @@ function setItems(product){
     localStorage.setItem('productsInCart',JSON.stringify(cartItems))
 
 }
+
+function totalCost(product){
+
+    
+
+     let cartCost = localStorage.getItem('totalCost');
+     
+     
+
+    // console.log(typeof cartCost);
+
+    if(cartCost != null){
+        cartCost = parseInt(cartCost);
+        product.price = parseInt(product.price);
+        localStorage.setItem('totalCost',cartCost + product.price);
+    }else{
+        localStorage.setItem('totalCost',product.price);
+    }
+
+    
+
+}
+
 
 onLoadCartNumbers()
 
