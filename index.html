@@ -6,7 +6,7 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="style.css" />
     <script
       src="https://code.jquery.com/jquery-2.2.4.min.js"
       integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -38,13 +38,8 @@
     <nav class="navbar navbar-light bg-light">
       <form class="form-inline">
         <button class="btn btn-outline-success" type="button">HOME</button>
-        <button
-          class="btn btn-sm btn-outline-secondary"
-          type="button"
-          style="position:absolute;left:90%"
-        >
-          CART
-          <span class="count">0</span>
+        <button class="cart" type="button" style="position:absolute;left:90%">
+          <a href="cart.html"> CART <span class="count">0</span></a>
         </button>
       </form>
     </nav>
@@ -77,11 +72,21 @@
         </div>
       </div>
     </div>
-    <div class="products">
-      <textarea class="x"></textarea>
-      <button class="adduser">ADD USER</button>
-      <button class="getTotal">GET TOTAL</button>
     </div>
+    <div class="product-container">
+      <div class="product-header">
+        <h5 class="total">TOTAL</h5>
+        <textarea id= "username" ></textarea>
+        <button id = "store">STORE</button>
+        <button id = "finally">GET TOTALS</button>
+      </div>
+    </div>
+    <div class="product-container">
+      <div class="product-header">
+        <span id = 'finalTotal'>0</span>
+      </div>
+    </div>
+    
     <script src="main.js"></script>
   </body>
 </html>

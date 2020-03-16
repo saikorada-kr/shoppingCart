@@ -1,7 +1,9 @@
 let carts = document.getElementsByClassName("add-cart");
 
 //console.log(carts.length);
-
+let condition1 = 0;
+let condition2 = "";
+let condition3 = 0;
 let products = [
   {
     name: "Small-pizza",
@@ -27,6 +29,7 @@ for (let i = 0; i < carts.length; i++) {
   carts[i].addEventListener("click", () => {
     cartNumbers(products[i]);
     totalCost(products[i]);
+    displayCart();
   });
 }
 
@@ -53,7 +56,7 @@ function cartNumbers(product) {
   }
 
   setItems(product);
-  console.log(product);
+  //console.log(product);
 }
 
 //////////////////////////////////////////////////SET ITEMS////////////////////////////////////////////////////////
@@ -79,7 +82,7 @@ function setItems(product) {
   }
   localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 }
-//////////////////////////////////////////////////////////TOTAL COST//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////TOTAL COST//////////////////////////////////////////////////////
 
 function totalCost(product) {
   let cartCost = localStorage.getItem("totalCost");
@@ -93,6 +96,49 @@ function totalCost(product) {
   }
 }
 
-///////////////////////////////////////////////////////TOTAL PRICE////////////////////////////////////////////////////////
+function displayCart() {
+  let cartItems = localStorage.getItem("productsInCart");
+  let cartCost = localStorage.getItem("totalCost");
+
+  cartItems = JSON.parse(cartItems);
+  Object.values(cartItems).map(item => {
+    if (item.name === "Small-pizza") {
+      condition1 = item.inCart;
+      condition2 = item.name;
+      condition3 = parseInt(item.price);
+    }
+
+    document.getElementById("finalTotal").innerHTML = cartCost;
+
+    let store = document.getElementById("store");
+    //console.log(store);
+    store.addEventListener("click", function() {
+      UserName = document.getElementById("username").value;
+
+      let Fin = document.getElementById("finally");
+      Fin.addEventListener("click", function() {
+        displayCart();
+      });
+
+      if (UserName === "infosis") {
+        let discount = 0.33;
+
+        let quotient = condition1 / 3;
+        let remainder = condition1 % 3;
+
+        if (quotient >= 1) {
+          if (remainder === 0) {
+            let Totaldiscount = condition1 * condition3 * discount;
+
+            let FinalPrice = cartCost - Totaldiscount;
+
+            console.log(FinalPrice);
+          } else if (remainder !== 0) {
+          }
+        }
+      }
+    });
+  });
+}
 
 onLoadCartNumbers();
