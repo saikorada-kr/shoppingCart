@@ -1,3 +1,11 @@
+ ******************IMPORTANT NOTE***********************************************************************
+ 
+ 
+      **** THIS PROJECT WORKS ONLY ON CHROME BROWSER.
+      
+      **** PLEASE REFRESH AFTER CLEARING THE CART TO GET THE UPDATED CART VALUE
+
+
 
 This project consists of implementation of a real time 'cart checkout' system.
 
@@ -19,8 +27,6 @@ CONSTRAINTS APPLICABLE:
 
 3. Facebook: gets a 5 for 4 deal on Medium Pizza, gets a discount on Large Pizza where the price drops to $389.99 per pizza.
       
-     
-      
-
-
+  
+ 
 
