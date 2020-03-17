@@ -245,3 +245,11 @@ function displayCart() {
     });
   });
 }
+
+let Allclear = document.getElementsByClassName("EMPTY CART");
+
+Allclear[0].addEventListener("click", () => {
+  localStorage.clear(function() {
+    console.log("clear");
+  });
+});
