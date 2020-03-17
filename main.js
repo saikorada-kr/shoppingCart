@@ -103,10 +103,30 @@ function displayCart() {
 
   cartItems = JSON.parse(cartItems);
   Object.values(cartItems).map(item => {
+    if (item.name === "Medium-pizza") {
+      mediumName = item.name;
+      mediumCount = item.inCart;
+      mediumPrice = parseInt(item.price);
+    } else {
+      mediumName = 0;
+      mediumCount = 0;
+      mediumPrice = 0;
+    }
+    if (item.name === "Large-pizza") {
+      largeName = item.name;
+      largeCount = item.inCart;
+      largePrice = parseInt(item.price);
+    } else {
+      largeName = 0;
+      largeCount = 0;
+      largePrice = 0;
+    }
+
     if (item.name === "Small-pizza") {
-      condition1 = item.inCart;
-      condition2 = item.name;
-      condition3 = parseInt(item.price);
+      condition1 = item.inCart; ///////////
+      condition2 = item.name; /////////////
+      condition3 = parseInt(item.price); //
+    } else {
     }
 
     let store = document.getElementById("store");
@@ -129,12 +149,32 @@ function displayCart() {
             if (remainder === 0) {
               let Totaldiscount = condition1 * condition3 * discount;
 
-              FinalPrice = cartCost - Totaldiscount;
+              let totalMedium = mediumCount * mediumPrice;
+
+              let totalLarge = largeCount * largePrice;
+
+              let totalSmall = condition1 * condition3;
+
+              FinalPrice =
+                totalSmall - Totaldiscount + totalMedium + totalLarge;
 
               console.log(FinalPrice);
               document.getElementById("finalTotal").innerHTML = FinalPrice;
             }
           }
+        } else if (UserName === "amazon") {
+          largePrice = 299.99;
+
+          let totalMedium = mediumCount * mediumPrice;
+
+          let totalLarge = largeCount * largePrice;
+
+          let totalSmall = condition1 * condition3;
+
+          FinalPrice = totalSmall + totalMedium + totalLarge;
+
+          console.log(FinalPrice);
+          document.getElementById("finalTotal").innerHTML = FinalPrice;
         }
       });
     });
