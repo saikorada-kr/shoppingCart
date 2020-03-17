@@ -1,10 +1,16 @@
 let carts = document.getElementsByClassName("add-cart");
+let largeName = 0;
+let largeCount = 0;
+let largePrice = 0;
 
-//console.log(carts.length);
+let mediumName = 0;
+let mediumCount = 0;
+let mediumPrice = 0;
+
 let condition1 = 0;
-let condition2 = "";
+let condition2 = 0;
 let condition3 = 0;
-let FinalPrice = 0;
+
 let products = [
   {
     name: "Small-pizza",
@@ -107,26 +113,16 @@ function displayCart() {
       mediumName = item.name;
       mediumCount = item.inCart;
       mediumPrice = parseInt(item.price);
-    } else {
-      mediumName = 0;
-      mediumCount = 0;
-      mediumPrice = 0;
     }
     if (item.name === "Large-pizza") {
       largeName = item.name;
       largeCount = item.inCart;
       largePrice = parseInt(item.price);
-    } else {
-      largeName = 0;
-      largeCount = 0;
-      largePrice = 0;
     }
-
     if (item.name === "Small-pizza") {
       condition1 = item.inCart; ///////////
       condition2 = item.name; /////////////
       condition3 = parseInt(item.price); //
-    } else {
     }
 
     let store = document.getElementById("store");
@@ -142,12 +138,90 @@ function displayCart() {
         if (UserName === "infosys") {
           let discount = 0.33;
 
-          let quotient = condition1 / 3;
+          let quotient = Math.floor(condition1 / 3);
           let remainder = condition1 % 3;
 
           if (quotient >= 1) {
             if (remainder === 0) {
               let Totaldiscount = condition1 * condition3 * discount;
+
+              let totalMedium = mediumCount * mediumPrice;
+
+              let totalLarge = largeCount * largePrice;
+
+              let totalSmall = condition1 * condition3;
+
+              let buffer = totalMedium + totalLarge;
+
+              console.log(totalMedium);
+
+              FinalPrice = totalSmall - Totaldiscount + buffer;
+
+              console.log(FinalPrice);
+              document.getElementById("finalTotal").innerHTML = FinalPrice;
+            } else if (remainder !== 0) {
+              let Totaldiscount = condition3 * discount * quotient * 3;
+
+              console.log(quotient);
+
+              console.log(Totaldiscount);
+
+              let totalMedium = mediumCount * mediumPrice;
+
+              let totalLarge = largeCount * largePrice;
+
+              let totalSmall = condition1 * condition3;
+
+              console.log(totalMedium);
+
+              FinalPrice =
+                totalSmall - Totaldiscount + totalMedium + totalLarge;
+
+              console.log(FinalPrice);
+              document.getElementById("finalTotal").innerHTML = FinalPrice;
+            }
+          } else {
+            document.getElementById("finalTotal").innerHTML = cartCost;
+          }
+        } else if (UserName === "amazon") {
+          mediumPrice = 299.99;
+
+          let totalMedium = mediumCount * mediumPrice;
+
+          let totalLarge = largeCount * largePrice;
+
+          let totalSmall = condition1 * condition3;
+
+          FinalPrice = totalSmall + totalMedium + totalLarge;
+
+          console.log(FinalPrice);
+          document.getElementById("finalTotal").innerHTML = FinalPrice;
+        } else if (UserName === "facebook") {
+          let discount = 0.2;
+          let largePrice = 389.99;
+
+          let quotient = Math.floor(mediumCount / 5);
+          let remainder = mediumCount % 5;
+
+          if (quotient >= 1) {
+            if (remainder === 0) {
+              let Totaldiscount = mediumCount * mediumPrice * discount;
+
+              let totalLarge = largeCount * largePrice;
+
+              let totalSmall = condition1 * condition3;
+
+              let totalMedium = mediumCount * mediumPrice;
+
+              //console.log(totalMedium);
+
+              FinalPrice =
+                totalMedium - Totaldiscount + totalSmall + totalLarge;
+
+              console.log(FinalPrice);
+              document.getElementById("finalTotal").innerHTML = FinalPrice;
+            } else if (remainder !== 0) {
+              let Totaldiscount = mediumPrice * discount * quotient * 5;
 
               let totalMedium = mediumCount * mediumPrice;
 
@@ -161,20 +235,11 @@ function displayCart() {
               console.log(FinalPrice);
               document.getElementById("finalTotal").innerHTML = FinalPrice;
             }
+          } else {
+            document.getElementById("finalTotal").innerHTML = cartCost;
           }
-        } else if (UserName === "amazon") {
-          largePrice = 299.99;
-
-          let totalMedium = mediumCount * mediumPrice;
-
-          let totalLarge = largeCount * largePrice;
-
-          let totalSmall = condition1 * condition3;
-
-          FinalPrice = totalSmall + totalMedium + totalLarge;
-
-          console.log(FinalPrice);
-          document.getElementById("finalTotal").innerHTML = FinalPrice;
+        } else {
+          document.getElementById("finalTotal").innerHTML = cartCost;
         }
       });
     });
