@@ -4,6 +4,7 @@ let carts = document.getElementsByClassName("add-cart");
 let condition1 = 0;
 let condition2 = "";
 let condition3 = 0;
+let FinalPrice = 0;
 let products = [
   {
     name: "Small-pizza",
@@ -115,30 +116,28 @@ function displayCart() {
     store.addEventListener("click", function() {
       UserName = document.getElementById("username").value;
 
-      let Fin = document.getElementById("finally");
-      Fin.addEventListener("click", function() {
-        displayCart();
-      });
+      //////
+      let Fin = document.getElementsByClassName("getTotals");
 
-      if (UserName === "infosis") {
-        let discount = 0.33;
+      Fin[0].addEventListener("click", () => {
+        //console.log("listening");
+        if (UserName === "infosis") {
+          let discount = 0.33;
 
-        let quotient = condition1 / 3;
-        let remainder = condition1 % 3;
+          let quotient = condition1 / 3;
+          let remainder = condition1 % 3;
 
-        if (quotient >= 1) {
-          if (remainder === 0) {
-            let Totaldiscount = condition1 * condition3 * discount;
+          if (quotient >= 1) {
+            if (remainder === 0) {
+              let Totaldiscount = condition1 * condition3 * discount;
 
-            let FinalPrice = cartCost - Totaldiscount;
+              FinalPrice = cartCost - Totaldiscount;
 
-            console.log(FinalPrice);
-          } else if (remainder !== 0) {
+              console.log(FinalPrice);
+            }
           }
         }
-      }
+      });
     });
   });
 }
-
-onLoadCartNumbers();
