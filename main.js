@@ -109,8 +109,6 @@ function displayCart() {
       condition3 = parseInt(item.price);
     }
 
-    document.getElementById("finalTotal").innerHTML = cartCost;
-
     let store = document.getElementById("store");
     //console.log(store);
     store.addEventListener("click", function() {
@@ -121,7 +119,7 @@ function displayCart() {
 
       Fin[0].addEventListener("click", () => {
         //console.log("listening");
-        if (UserName === "infosis") {
+        if (UserName === "infosys") {
           let discount = 0.33;
 
           let quotient = condition1 / 3;
@@ -134,6 +132,7 @@ function displayCart() {
               FinalPrice = cartCost - Totaldiscount;
 
               console.log(FinalPrice);
+              document.getElementById("finalTotal").innerHTML = FinalPrice;
             }
           }
         }
